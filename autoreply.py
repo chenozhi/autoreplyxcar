@@ -75,15 +75,14 @@ def get_properties_from_remote():
 get_properties_from_remote()
 
 scheduler = BackgroundScheduler()
-# 间隔3秒钟执行一次
-scheduler.add_job(get_properties_from_remote, 'interval', seconds=300)
+scheduler.add_job(get_properties_from_remote, 'interval', seconds=600)
 # 这里的调度任务是独立的一个线程
 scheduler.start()
 
 try:
     # 其他任务是独立的线程执行
     while True:
-        time.sleep(200)
+        time.sleep(50)
 except (KeyboardInterrupt, SystemExit):
     scheduler.shutdown()
     print('Exit The Job!')
